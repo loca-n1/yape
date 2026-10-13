@@ -136,7 +136,24 @@ body {
   letter-spacing: 0.02em;
 }
 
-.app-shell > .status-bar { display: none; }
+.app-shell > .status-bar {
+  position: absolute;
+  z-index: 20;
+  top: 10px;
+  right: 10px;
+  display: block;
+  padding: 0;
+}
+
+.status-bar .time,
+.status-icons > :not(.fullscreen-toggle) {
+  display: none;
+}
+
+.status-icons {
+  width: max-content;
+  margin-left: auto;
+}
 
 .time {
   font-weight: 700;
@@ -154,12 +171,12 @@ body {
 .fullscreen-toggle {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 6px;
-  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(60, 15, 94, 0.72);
   color: #fff;
   cursor: pointer;
 }
@@ -209,8 +226,8 @@ body {
 }
 
 .receipt-card {
-  width: calc(100% - 4px);
-  max-width: 430px;
+  width: 91%;
+  max-width: 650px;
   background: #fff;
   border-radius: 20px;
   margin: 0 auto;
@@ -264,30 +281,27 @@ body {
 
 .amount-row {
   display: flex;
-  align-items: flex-end;
-  gap: 5px;
+  align-items: baseline;
+  gap: 3px;
   margin: 0 0 14px;
   line-height: 1;
 }
 
 .currency {
-  font-size: clamp(1.55rem, 6.8vw, 2.05rem);
-  line-height: 0.9;
+  font-size: clamp(1.2rem, 5vw, 1.4rem);
+  line-height: 1;
   font-weight: 800;
-  color: #1d1d1f;
-  letter-spacing: -0.08em;
-  transform: translateY(-0.12em);
-  transform-origin: left bottom;
+  color: #40344f;
+  letter-spacing: -0.06em;
+  transform: translateY(-0.5em);
 }
 
 .amount {
-  font-size: clamp(2.65rem, 11vw, 3.3rem);
-  line-height: 0.8;
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  color: #1d1d1f;
-  transform: translateY(-0.04em);
-  transform-origin: left bottom;
+  font-size: clamp(2.2rem, 9vw, 2.5rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  color: #40344f;
 }
 
 .user-name {
@@ -310,7 +324,7 @@ body {
   color: #494b54;
   font-size: 0.82rem;
   padding: 10px 0 18px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 0;
   margin-top: 10px;
 }
 
@@ -338,10 +352,10 @@ body {
   grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 10px;
-  padding: 14px 0 14px;
-  border-top: 0;
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .security-label {
@@ -540,6 +554,8 @@ body {
 @media (max-width: 430px) {
   body {
     padding: 0;
+    display: block;
+    min-height: 100dvh;
   }
 
   .app-shell {
@@ -547,6 +563,128 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     border-radius: 0;
+    box-shadow: none;
+  }
+
+  .hero-header {
+    width: 100%;
+  }
+
+  .receipt-card {
+    width: 91%;
+    padding: 22px 16px 16px;
+  }
+
+  .receipt-top {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .receipt-top h1 {
+    font-size: clamp(1.25rem, 5.8vw, 1.45rem);
+  }
+
+  .share-btn {
+    font-size: clamp(0.84rem, 3.8vw, 1rem);
+  }
+
+  .meta-row {
+    gap: 8px 12px;
+    font-size: clamp(0.78rem, 3.4vw, 0.9rem);
+  }
+
+  .security-row {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 8px;
+  }
+
+  .security-label {
+    font-size: clamp(0.56rem, 2.7vw, 0.68rem);
+  }
+
+  .pin-boxes span {
+    width: 26px;
+    height: 26px;
+  }
+
+  .detail-row {
+    font-size: clamp(0.88rem, 3.8vw, 1rem);
+  }
+
+  .promo-section {
+    padding: 22px 14px 24px;
+  }
+
+  .promo-title-row {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .promo-title-row h2 {
+    font-size: clamp(1.45rem, 6.4vw, 1.8rem);
+  }
+
+  .promo-cards {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .promo-product,
+  .promo-offer {
+    min-height: clamp(170px, 48vw, 200px);
+    border-radius: 16px;
+  }
+
+  .promo-image {
+    min-height: inherit;
+  }
+
+  .promo-caption {
+    left: 8px;
+    right: 8px;
+    font-size: clamp(0.56rem, 2.5vw, 0.7rem);
+  }
+
+  .promo-offer {
+    padding: 14px 12px 12px;
+  }
+
+  .offer-percent {
+    font-size: clamp(2rem, 10vw, 2.7rem);
+  }
+
+  .offer-label {
+    font-size: clamp(1.35rem, 6.8vw, 1.7rem);
+  }
+
+  .offer-copy {
+    font-size: clamp(0.82rem, 3.8vw, 1rem);
+  }
+
+  .promo-offer button {
+    padding: 9px 12px;
+    font-size: clamp(0.75rem, 3.4vw, 0.88rem);
+  }
+}
+
+@media (max-width: 350px) {
+  .receipt-card {
+    padding-right: 13px;
+    padding-left: 13px;
+  }
+
+  .promo-cards {
+    grid-template-columns: 1fr 0.9fr;
+    gap: 8px;
+  }
+
+  .share-icon {
+    width: 15px;
+    height: 15px;
+  }
+
+  .offer-percent {
+    font-size: 1.9rem;
   }
 }
 
